@@ -1,7 +1,4 @@
-# Løsningsforslag til Oppgave 1
-Her finner du løsningsforslag til oppgavene i workshoppen. Dette er bare et løsningsforslag, så det kan finnes andre måter å løse oppgavene på.
-
-## Oppgave 1
+# Oppgave 1
 3. Gjør en spørring mot `citibike_stations` for å hente ut kapasiteten til hver stasjon, og lagre resultatet fra spørringen i en tabell i datasettet du lagde i oppg. 1.1
 ```
 CREATE [OR REPLACE] TABLE <dataset_name>.<table_name> AS
