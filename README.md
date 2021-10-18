@@ -47,7 +47,7 @@ For å begrense datamengden vi skal se på (og ikke bruke opp alle free credits)
 
 Til slutt ønsker vi å ha info om stasjonenes kapasitet inn sammen med data om sykkelturene:
 
-5. Gjør en spørring mot de 2 nye tabellene i datasettet ditt og lag et view som joiner kapsiteten sammen med de riktige stasjonene i tabellen med data om sykkelturer. Pass på at du får med kapasiteten til både start stasjonen og slutt stasjonen på turene.
+5. Gjør en spørring mot de 2 nye tabellene i datasettet ditt og lag et view som joiner kapsiteten sammen med de riktige stasjonene i tabellen med data om sykkelturer. Pass på at du får med kapasiteten til både start-stasjonen og slutt-stasjonen på turene.
 
 > #### TIPS
 > Dersom man skal utføre queries i flere steg (som for eksempel flere joins) kan man i BigQuery bruke `WITH` clause for å lage midlertidige tabeller som brukes under spørringen. [Mer om `WITH` clause her](https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#with_clause)
