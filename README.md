@@ -1,4 +1,4 @@
-# Intro til BigQuery workshop
+# Workshop: Intro til BigQuery
 
 BigQuery er en datavarehusløsning som kjører på Googles skyplattform (GCP). BigQuery er ‘fully mangaged’, ‘serverless’ og skalerbart, og gir mulighet for analyse av petabytes av data. I tillegg tilbyr BigQuery muligheter for maskinlæring med BigQueryML, ‘geospatial’ analyser med BigQuery GIS, og lett tilgjengelige integrasjoner med visualiseringsverktøy som Google Data Studio eller Looker. For mer om BigQuery, les her: https://cloud.google.com/bigquery.
 
