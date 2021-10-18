@@ -84,7 +84,7 @@ I denne oppgaven ønsker vi å finne ut av hvilke stasjoner og turer som benytte
 ### Oppgave 3
 I denne oppgaven ønsker vi å se hvordan bruken av Citibike syklene endres i løpet av et døgn.
 
-1. Lag en gjenbrukbar funksjon for å seksjonere timestamps inn i 1 time lange seksjoner, hvor hver seksjon navngives på dette formatet: 'HH:00-HH:00'.
+1. Lag en midlertidig funksjon for å seksjonere timestamps inn i 1 time lange seksjoner, hvor hver seksjon navngives på dette formatet: 'HH:00-HH:00'.
   
 > #### TIPS
 > I BigQuery har man muligheten til å lage gjenbrukbare (eller midlertidige) [brukerdefinerte funksjoner](https://cloud.google.com/bigquery/docs/reference/standard-sql/user-defined-functions). Eksempel på persitent funksjon:
