@@ -17,7 +17,7 @@ GROUP BY end_station_id, end_station_name, end_station_capacity
 ORDER BY num_trips DESC
 ```
 
-2. Finn ut hvilke turer (fra samme start stasjon til stopp stasjon) som tas oftest.
+2. Finn ut hvilke turer (fra samme start-stasjon til stopp-stasjon) som tas oftest.
 ```
 SELECT CONCAT(start_station_name, ' - ', end_station_name) AS trip_stations, count(*) AS num_trips
 FROM `<dataset_name>.<view_name>`

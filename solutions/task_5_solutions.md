@@ -1,7 +1,8 @@
 # Oppgave 5
 
 ### Med `birth_year` som brukerattributt
-1. Hvordan er balansen av data mellom brukergruppene? Er de representert likt eller er en eller noen grupper representert mer enn andre?
+1. Hvordan er balansen av data mellom brukergruppene? 
+Er de representert likt eller er en eller noen grupper representert mer enn andre?
 ```
 CREATE TEMP FUNCTION GetAgeGroup(birth_year INT64) RETURNS STRING AS (
    CASE

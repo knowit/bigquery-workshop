@@ -6,7 +6,8 @@ SELECT station_id, capacity
 FROM `bigquery-public-data.new_york_citibike.citibike_stations`
 ```
 
-4. Gjør en spørring mot `citibike_trips` for å hente ut kun sykkelturer fra 2017-2018 uten feltene `bikeid` og `customer_plan`. Lagre resultatet fra spørringen i en tabell i datsettet ditt.
+4. Gjør en spørring mot `citibike_trips` for å hente ut kun sykkelturer fra 2017-2018 uten feltene `bikeid` og `customer_plan`. 
+Lagre resultatet fra spørringen i en tabell i datsettet ditt.
 ```
 CREATE [OR REPLACE] TABLE <dataset_name>.<table_name> AS
 SELECT * EXCEPT(bikeid, customer_plan) 
@@ -14,7 +15,8 @@ FROM `bigquery-public-data.new_york_citibike.citibike_trips`
 WHERE EXTRACT(YEAR from starttime) in (2017, 2018)
 ```
 
-5. Gjør en spørring mot de 2 nye tabellene i datasettet ditt og lag et view som joiner kapsiteten sammen med de riktige stasjonene i tabellen med data om sykkelturer. Pass på at du får med kapasiteten til både start stasjonen og slutt stasjonen på turene.
+5. Gjør en spørring mot de 2 nye tabellene i datasettet ditt og lag et view som joiner kapsiteten sammen med de riktige stasjonene i tabellen med data om sykkelturer. 
+Pass på at du får med kapasiteten til både start stasjonen og slutt stasjonen på turene.
 ```
 WITH t1 AS (
   SELECT trips.*, capacity AS start_station_capacity
