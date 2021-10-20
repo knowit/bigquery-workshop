@@ -73,10 +73,10 @@ Pass på at du får med kapasiteten til både start-stasjonen og slutt-stasjonen
 >    ON this_table.id = other_table.id
 >  )
 >  
->  SELECT *
->  FROM temp_table
->  JOIN other_table
->  ON temp_table.other_id = other_table.id
+> SELECT *
+> FROM temp_table
+> JOIN other_table
+> ON temp_table.other_id = other_table.id
 > ```
 
 Dette viewet kan nå brukes som datagrunnlag for resten av oppgavene.
@@ -99,11 +99,14 @@ I denne oppgaven ønsker vi å se hvordan bruken av Citibike syklene endres i l�
 1. Lag en midlertidig funksjon for å seksjonere timestamps inn i 1 time lange seksjoner, hvor hver seksjon navngives på dette formatet: 'HH:00-HH:00'.
   
 > #### TIPS
-> I BigQuery har man muligheten til å lage gjenbrukbare (eller midlertidige) [brukerdefinerte funksjoner](https://cloud.google.com/bigquery/docs/reference/standard-sql/user-defined-functions). Eksempel på persitent funksjon:
+> I BigQuery har man muligheten til å lage gjenbrukbare (eller midlertidige) [brukerdefinerte funksjoner](https://cloud.google.com/bigquery/docs/reference/standard-sql/user-defined-functions). Eksempel på midlertidig funksjon:
 > ```
-> CREATE FUNCTION mydataset.AddFourAndDivide(x INT64, y INT64)
+> CREATE TEMP FUNCTION AddFourAndDivide(x INT64, y INT64)
 >   RETURNS FLOAT64
 >   AS ((x + 4) / y);
+>
+> SELECT val, AddFourAndDivide(val, 2)
+> FROM UNNEST([2,3,5,8]) AS val;
 > ```
 
 2. Når på døgnet tas det flest turer?
@@ -136,7 +139,7 @@ Det finnes også rader i tabellen hvor disse feltene er blanke. De radene ignore
 Velg ut en brukerattributt du ønsker å se nærmere på og ta før deg oppgavene under. 
 
 > #### Tips
-> Dersom du ønsker å se på alder, seksjoner brukerne inn i aldersgrupper slik at hver gruppe får en god mengde data. 
+> Dersom du ønsker å se på alder; seksjoner brukerne inn i aldersgrupper slik at hver gruppe får en god mengde data. 
 > F.eks. kan [CASE](https://cloud.google.com/bigquery/docs/reference/standard-sql/conditional_expressions#case_expr) brukes til dette
 
 1. Hvordan er balansen av data mellom brukergruppene? 
