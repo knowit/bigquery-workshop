@@ -7,7 +7,7 @@ For mer om BigQuery, les her: https://cloud.google.com/bigquery.
 I denne workshopen vil vi gi en kort introduksjon til BigQuery før vi frigjør deltakerne til å ta i bruk tjenesten selv gjennom oppgaver designet for å bli kjent med de grunnleggende delene av BigQuery. 
 Det vil også være muligheter for å gjøre mer avanserte oppgaver for de som er kjent med BigQuery fra før eller blir ferdig med oppgavene tidlig.
 
-## Komme i gang
+<!--## Komme i gang (Uten å bruke knowit prosjekt)
 For å komme i gang med BigQuery er det ikke så mye som kreves:
 
 1. Lag et nytt prosjekt i GCP Console eller bruk et eksisterende. 
@@ -16,12 +16,23 @@ For å komme i gang med BigQuery er det ikke så mye som kreves:
 
 Da vil du havne i BigQuery sin konsoll UI som har all funksjonalitet som kreves for å fullføre oppgavene.
 For en mer detaljert gjennomgang og en intro til konsollen se https://cloud.google.com/bigquery/docs/quickstarts/quickstart-cloud-console.
+-->
+## Komme i gang
+For å komme i gang med BigQuery er det ikke så mye som kreves:
+
+1. Logg inn med knowit-brukeren i https://console.cloud.google.com/.
+2. Sørg for at du er i prosjektet `fagseminar-bigquery-workshop` under `knowit.no` organisasjonen.
+3. Åpne BigQuery fra menyen på venstresiden, eller bruk søkefeltet.
+
+Da vil du havne i BigQuery sin konsoll UI som har all funksjonalitet som kreves for å fullføre oppgavene.
+For en mer detaljert gjennomgang og en intro til konsollen se https://cloud.google.com/bigquery/docs/quickstarts/quickstart-cloud-console.
 
 ## Oppgaver
 ### Oppgave 1
 I BigQuery organiseres data i tabeller eller views. En tabell eller view tilhører et datasett og et datasett tilhører et GCP prosjekt. 
 I denne workshoppen gjør vi det enkelt og samler alt vi gjør i ett datasett:
-1. Lag et datasett. 
+
+1. Lag et datasett med datalokasjon i US (samme lokasjon som de offentlige datasettene vi skal ta i bruk).
 Se [her](https://cloud.google.com/bigquery/docs/quickstarts/quickstart-cloud-console#create_and_query_a_dataset) for hvordan man lager datasett. 
 
 BigQuery gir tilgang til et stort utvalg av åpent tilgjengelig data gjennom deres Google Cloud Public Dataset Program. 
@@ -49,7 +60,7 @@ Det er sistnevnte som er mest interessant for denne workshoppen, men vi ønsker 
 
 For å begrense datamengden vi skal se på (og ikke bruke opp alle free credits) ønsker vi å avgrense hvor mye data vi bruker fra `citibike_trips` tabellen.
 
-4. Gjør en spørring mot `citibike_trips` for å hente ut kun sykkelturer fra 2017-2018 uten feltene `bikeid` og `customer_plan`. 
+4. Gjør en spørring mot `citibike_trips` for å hente ut kun sykkelturer fra 2017-2018. Ta med alle feltene i tabellene utenom feltene `bikeid` og `customer_plan`. 
 Lagre resultatet fra spørringen i en tabell i datsettet ditt.
 
 > #### TIPS
@@ -58,7 +69,7 @@ Lagre resultatet fra spørringen i en tabell i datsettet ditt.
 Til slutt ønsker vi å ha info om stasjonenes kapasitet inn sammen med data om sykkelturene:
 
 5. Gjør en spørring mot de 2 nye tabellene i datasettet ditt og lag et view som joiner kapsiteten sammen med de riktige stasjonene i tabellen med data om sykkelturer. 
-Pass på at du får med kapasiteten til både start-stasjonen og slutt-stasjonen på turene.
+Pass på at du får med kapasiteten til både start-stasjonen og slutt-stasjonen på turene og gi gode navn til kapasitetene slik at de lett kan skilles f.eks. `start_station_capacity` og `end_station_capacity`. Det kan også være greit å unngå unødvendige dublikatkolonner som kan oppstå når man slår sammen tabeller.
 
 > #### TIPS
 > Dersom man skal utføre queries i flere steg (som for eksempel flere joins) kan man i BigQuery bruke `WITH` clause for å lage midlertidige tabeller som brukes under spørringen. 
@@ -82,10 +93,9 @@ Pass på at du får med kapasiteten til både start-stasjonen og slutt-stasjonen
 Dette viewet kan nå brukes som datagrunnlag for resten av oppgavene.
 
 ### Oppgave 2
-I denne oppgaven ønsker vi å finne ut av hvilke stasjoner og turer som benyttes oftest av citibike-brukerne.
+I denne oppgaven ønsker vi å finne ut av turer som benyttes oftest av citibike-brukerne.
 
-1. Finn ut hvilke stasjoner turer oftest startes i, og hvilke de oftest sluttes i, og sammenlign dette med hvilke stasjoner som har høyest kapasitet.
-2. Finn ut hvilke turer (fra samme startstasjon til stoppstasjon) som tas oftest.
+1. Skriv en spørring som finner ut hvilke turer (fra samme startstasjon til stoppstasjon) som tas oftest.
   
 > #### TIPS
 > En enkel måte å slå sammen to kolonner på er å bruke CONCAT. Eksempel:
@@ -109,15 +119,14 @@ I denne oppgaven ønsker vi å se hvordan bruken av Citibike syklene endres i l�
 > FROM UNNEST([2,3,5,8]) AS val;
 > ```
 
-2. Når på døgnet tas det flest turer?
+2. Skriv en spørring som tar i bruk funksjonen fra 2.1, og finner ut når på døgnet det tas flest turer.
 
 
 ### Oppgave 4
 
 I denne oppgaven er vi interessert i å finne de lengste turene, både i tid og avstand.
 
-1. Finn de turene som bruker lengst tid, og sammenlign dette med hvor lang tid det gjennomsnittlig er brukt på turer med samme start og slutt stasjon.
-2. Finn de turene som har lengst reisevei (i luftlinje).
+1. Skriv en spørring som finner de turene som har lengst reisevei (i luftlinje).
   
 > #### TIPS
 > BigQuery har 
@@ -126,6 +135,8 @@ I denne oppgaven er vi interessert i å finne de lengste turene, både i tid og 
 > ```
 > ST_GEOGPOINT(longitude, latitude)
 > ```
+  
+2. Skriv en spørring som finner gjennomsnittlig, lengste og korteste tid (`tripduration`), samt summen i tid, brukt på turer mellom samme start og stoppested. Sorter på største sum.
 
 ### Oppgave 5
 I denne oppgaven ønsker vi å se på korrelasjonen mellom brukerattributer og brukeroppførsel.
@@ -142,11 +153,9 @@ Velg ut en brukerattributt du ønsker å se nærmere på og ta før deg oppgaven
 > Dersom du ønsker å se på alder; seksjoner brukerne inn i aldersgrupper slik at hver gruppe får en god mengde data. 
 > F.eks. kan [CASE](https://cloud.google.com/bigquery/docs/reference/standard-sql/conditional_expressions#case_expr) brukes til dette
 
-1. Hvordan er balansen av data mellom brukergruppene? 
-Er de representert likt eller er en eller noen grupper representert mer enn andre?
-2. Tar de ulike brukergruppene turer til forskjellige stasjoner?
-3. Tar de ulike brukergruppene turer på samme eller forskjellige tidspunkt på døgnet?
-4. Finn gjennomsnittstiden hver brukergruppene bruker på en tur.
+1. Skriv en spørring som finner antall trips for hver brukergruppe. 
+2. Skriv en spørring som finner hvilke turer (til samme start- og stoppestasjon) som tas oftest for en av brukergruppene. Gjerne utfør spørringen for alle brukergruppene og sammenlign resultater.
+3. Skriv en spørring som finner gjennomsnittstiden hver brukergruppene bruker på en tur.
 
 ## Ekstraoppgaver
 For de som er kjent med BigQuery fra før eller blir ferdig med oppgavene tidlig, 
