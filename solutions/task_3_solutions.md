@@ -7,7 +7,7 @@ CREATE TEMP FUNCTION GetHourSectionFromDatetime(d DATETIME) AS
 );
 ```
 
-2. Når på døgnet tas det flest turer?
+2. Skriv en spørring som tar i bruk funksjonen fra 2.1, og finner ut når på døgnet det tas flest turer.
 ```
 CREATE TEMP FUNCTION GetHourSectionFromDatetime(d DATETIME) AS
 (
